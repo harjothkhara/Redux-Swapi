@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { CharacterList } from "../components";
 // import actions
 import { getCharacter } from '../actions';
-import Loader from 'react-loader';
+import Loader from 'react-loader-spinner';
+import '../index.css'
 
 class CharacterListView extends React.Component {
   constructor(props) {
@@ -19,11 +20,21 @@ class CharacterListView extends React.Component {
   render() {
     if (this.props.fetching) {
       // return something here to indicate that you are fetching data
-      <Loader type="Ball-Triangle" color="#00bfff" />
+      return (
+        <div className="loading">
+            <Loader type="ThreeDots"
+                    color="#00BFFF"
+                    height="150"	
+                    width="100" />
+        </div>
+
+        
+      );
     }
     return (
-      <div className="CharactersList_wrapper">
+      <div className="container">
         <CharacterList characters={this.props.characters} />
+        
       </div>
     );
   }
